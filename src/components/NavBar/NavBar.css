@@ -1,0 +1,19 @@
+.menu{
+    display:flex;
+    flex-direction: column;
+    align-content: flex-start;
+    flex-grow:0;
+}
+li{
+    list-style-type: none;
+}
+.page-link{
+    color: cornflowerblue;
+    text-decoration: none;
+    height:20px;
+    padding:10px;
+    display: block;
+}
+.page-link:active{
+    background-color: lightblue;
+}

@@ -1,0 +1,29 @@
+.header{
+  display:flex;
+  flex-direction:row;
+  background-color: #666666;
+  color: white;
+}
+.left-header{
+  flex-grow: 1;
+  padding-left: 40px;
+}
+.middle-header{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 4px;
+  background-color: white;
+  color:#282c34;
+}
+.right-header{
+  padding: 10px;
+  white-space: nowrap;
+}
+.header-icon{
+  min-width:30px;
+  min-height:30px;
+  padding:2px;
+  margin-left: auto;
+  margin-right: auto;
+}

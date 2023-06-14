@@ -1,25 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
-
-function App() {
+import { Header } from './components/Header/Header.js';
+import { NavBar } from './components/NavBar/NavBar.js';
+import { Resume } from './components/Resume/Resume.js';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ChessClassifier } from './components/ChessClassifier/ChessClassifier.js';
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <div className='nav-and-body'>
+        <Router>
+          <NavBar className='navbar' />
+          <div>
+            <Routes>
+              <Route path='/' element={Resume()} />
+              <Route className='main-content' path='/chess' element={<ChessClassifier />} />
+            </Routes>
+          </div>
+        </Router >
+      </div>
     </div>
   );
 }
-
-export default App;
