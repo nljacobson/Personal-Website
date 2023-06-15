@@ -5,7 +5,7 @@ import './Resume.css';
 export function Resume(){
   return(
     <div>
-      <object type="application/pdf" data={'./HeaderlessResume.pdf'}
+      <object type="application/pdf" 
       style={{height: '100vh', width: '100vw'}}>
       <p>Failed to Load PDF!</p>
       </object>
