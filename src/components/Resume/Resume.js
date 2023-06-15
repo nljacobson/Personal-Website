@@ -3,9 +3,10 @@ import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import './Resume.css';
 
 export function Resume(){
+  const resume = './HeaderlessResume.pdf';
   return(
     <div>
-      <object type="application/pdf" 
+      <object type="application/pdf" data={resume}
       style={{height: '100vh', width: '100vw'}}>
       <p>Failed to Load PDF!</p>
       </object>
