@@ -1,10 +1,9 @@
-import 'react-pdf/dist/esm/Page/TextLayer.css';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import './Resume.css';
-
 export function Resume(){
   const resumeDocument = './HeaderlessResume.pdf';
   return(
-      <p> Failed to load resume <a href={resumeDocument}></a>.</p>
+    <object data={resumeDocument} type="application/pdf" width="1000vh" height="1000vh">
+      <p>Unable to display PDF file. <a href={resumeDocument}>Download</a> instead.</p>
+    </object>  
   )
 }

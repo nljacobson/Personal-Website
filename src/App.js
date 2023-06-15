@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ChessClassifier } from './components/ChessClassifier/ChessClassifier.js';
 export default function App() {
   return (
-    <div>
+    <div className='app'>
       <Header />
       <div className='nav-and-body'>
         <Router>
@@ -14,7 +14,7 @@ export default function App() {
           <div>
             <Routes>
               <Route path='/' element={Resume()} />
-              <Route className='main-content' path='/chess' element={<ChessClassifier />} />
+              <Route path='/chess' element={<ChessClassifier />} />
             </Routes>
           </div>
         </Router >
