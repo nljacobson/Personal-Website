@@ -1,19 +1,15 @@
+import {useEffect} from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import './Resume.css';
 import resume from './HeaderlessResume.pdf';
 
-//Define worker for pdf reader
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.js',
-  import.meta.url,
-).toString();
-
 export function Resume(){
-    return(
-            <Document height='1000px' className='resume-doc' file={resume}>
-                <Page pageNumber={1}/>
-            </Document>           
-    )
+  useEffect(() => { pdfjs.GlobalWorkerOptions.workerSrc =`https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;});
+  return(
+          <Document height='1000px' className='resume-doc' file={resume}>
+              <Page pageNumber={1}/>
+          </Document>           
+  )
 }
