@@ -14,7 +14,7 @@ export default function App() {
           <div>
             <Routes>
               <Route exact path='/' element={Resume()} />
-              <Route exact path='/chess' element={<ChessClassifier />} />
+              <Route path='/chess' element={<ChessClassifier />} />
             </Routes>
           </div>
         </Router >
