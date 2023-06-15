@@ -6,7 +6,7 @@ export function Resume(){
   const resumeDocument = './HeaderlessResume.pdf';
   return(
     <div>
-      <object type="application/pdf" data={resumeDocument}
+      <object type="application/pdf" src={resumeDocument}
       style={{height: '100vh', width: '100vw'}}>
       <p>Failed to Load PDF!</p>
       </object>
