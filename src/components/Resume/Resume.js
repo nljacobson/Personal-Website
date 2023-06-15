@@ -5,11 +5,6 @@ import './Resume.css';
 export function Resume(){
   const resumeDocument = './HeaderlessResume.pdf';
   return(
-    <div>
-      <object type="application/pdf" src={resumeDocument}
-      style={{height: '100vh', width: '100vw'}}>
-      <p>Failed to Load PDF!</p>
-      </object>
-    </div>      
+      <p> Failed to load resume <a href={resumeDocument}></a>.</p>
   )
 }
