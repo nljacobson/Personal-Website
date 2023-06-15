@@ -24,25 +24,19 @@ export function ChessClassifier() {
 function ChessBoard(){
     const [game, setGame] = useState(new Chess());
     
-    function safeGameMutate(modify) {
-        setGame((g) => {
-          const update = { ...g };
-          modify(update);
-          return update;
-        });
-      }
     //Method for validating move and updating game
     function onDrop(startSquare, endSquare){
         const gameCopy = new Chess();
         gameCopy.loadPgn(game.pgn());
         console.log(game.moves())
         try{
-            const move = gameCopy.move({
+            gameCopy.move({
                 from: startSquare,
                 to: endSquare,
                 promotion: "q",
               });
               setGame(gameCopy);
+              
         }
         catch{
             console.log("Illegal Move!")
