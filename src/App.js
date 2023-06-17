@@ -15,6 +15,7 @@ export default function App() {
             <Routes>
               <Route exact path='/' element={Resume()} />
               <Route path='/chess' element={<ChessClassifier />} />
+              <Route path='/*' element={<p>Error</p>}/>
             </Routes>
           </div>
         </Router >
