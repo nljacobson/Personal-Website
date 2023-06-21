@@ -13,7 +13,7 @@ export default function App() {
           <NavBar className='navbar' />
           <div>
             <Routes>
-              <Route path='/resume' element={Resume()} />
+              <Route path='/' element={Resume()} />
               <Route path='/chess' element={<ChessClassifier />} />
               <Route path='/*' element={<p>Error</p>}/>
             </Routes>

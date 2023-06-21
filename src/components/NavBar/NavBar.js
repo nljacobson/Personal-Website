@@ -4,7 +4,7 @@ export function NavBar(){
         return (
             <div className='menu'>
                 <li>
-                    <Link to="/resume" className='page-link'>Resume</Link>
+                    <Link to="/" className='page-link'>Resume</Link>
                 </li>
                 <li>
                     <Link to="/chess" className='page-link'>ChessClassifier</Link>
