@@ -1,49 +1,63 @@
-import {React, useState} from 'react';
-import './ChessClassifier.css'
+import { React, useState } from 'react';
+import './ChessClassifier.css';
+import { PlayerList } from './PlayerList.js';
 import { Chessboard } from 'react-chessboard';
+import axios from "axios";
 import { Chess } from 'chess.js';
-//import { Chess } from 'chess.js';
-//Note: View is taken from 
+import { chessDescription, howToUse } from './ChessDescription.js';
 export function ChessClassifier() {
-    return (
-        <div className='chess-wrapper'>
-            <div className='player-guesses'>
-                <h3>Black Player</h3>
-            </div>
-            <div className='chessboard'>
-                <ChessBoard/>
-            </div>
-            <div className='player-guesses'>
-                <h3>White Player</h3>
-            </div>
-        </div>
-    )
-
-}
-
-function ChessBoard(){
+    const [whiteGuesses, setWhiteGuesses] = useState([])
+    const [blackGuesses, setBlackGuesses] = useState([])
     const [game, setGame] = useState(new Chess());
-    
-    //Method for validating move and updating game
-    function onDrop(startSquare, endSquare){
+    function onDrop(startSquare, endSquare) {
         const gameCopy = new Chess();
         gameCopy.loadPgn(game.pgn());
-        console.log(game.moves())
-        try{
+        try {
             gameCopy.move({
                 from: startSquare,
                 to: endSquare,
                 promotion: "q",
-              });
-              setGame(gameCopy);
-              
+            });
+            setGame(gameCopy);
+            if (game.moveNumber() >= 0) {
+                getGuesses(gameCopy.fen())
+            }
+
         }
-        catch{
+        catch {
             console.log("Illegal Move!")
         }
-        return true
     }
-    return(<Chessboard
+
+    function getGuesses(fen) {
+        const port = 5000;
+        const host = window.location.hostname
+        axios.get(`http://${host}:${port}/api/chess?fen=${fen}`)
+            .then((response) => {
+                const res = response.data
+                setBlackGuesses(res.blackGuesses)
+                setWhiteGuesses(res.whiteGuesses)
+            }
+            )
+    }
+    function resetBoard() {
+        setGame(new Chess());
+        setBlackGuesses([]);
+        setWhiteGuesses([]);
+    }
+    return (
+        <div className='chess-wrapper-horizontal'>
+                <PlayerList
+                    props={[whiteGuesses, 'White']}
+                />
+            <div className='chessboard'>
+                <div className='button-wrapper'>
+                    <button className='reset-button'
+                        onClick={resetBoard}>
+                        Reset
+                    </button>
+                </div>
+                <Chessboard
                     id="Configurable Board"
                     position={game.fen()}
                     onArrowsChange={function noRefCheck() { }}
@@ -56,5 +70,16 @@ function ChessBoard(){
                     onPieceDrop={onDrop}
                     onSquareClick={function noRefCheck() { }}
                     onSquareRightClick={function noRefCheck() { }}
-                />)
+                />
+            </div>
+                <PlayerList
+                    props={[blackGuesses, 'Black']}
+                />
+            <div className='chess-description-wrapper'>
+                <h5 className='chess-description'>Chess Player Classifier</h5>
+                <p className='chess-description' >{chessDescription}</p>
+                <p className='chess-description' >{howToUse}</p>
+            </div>
+        </div>
+    )
 }

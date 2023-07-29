@@ -2,6 +2,7 @@ import './App.css';
 import { Header } from './components/Header/Header.js';
 import { NavBar } from './components/NavBar/NavBar.js';
 import { Resume } from './components/Resume/Resume.js';
+import { QHO } from './components/QHO/QHO.js';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ChessClassifier } from './components/ChessClassifier/ChessClassifier.js';
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
             <Routes>
               <Route path='/' element={Resume()} />
               <Route path='/chess' element={<ChessClassifier />} />
+              <Route path='/qho' element={QHO()}/>
               <Route path='/*' element={<p>Error</p>}/>
             </Routes>
           </div>

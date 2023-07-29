@@ -9,6 +9,9 @@ export function NavBar(){
                 <li>
                     <Link to="/chess" className='page-link'>ChessClassifier</Link>
                 </li>
+                <li>
+                    <Link to="/qho" className='page-link' >Quantum Harmonic Oscillator</Link>
+                </li>
             </div>
         )
 }

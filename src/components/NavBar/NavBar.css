@@ -1,4 +1,6 @@
 .menu{
+    background-color:#f9f9f9;
+    color:#4998cb;
     display:flex;
     flex-direction: column;
     align-content: flex-start;
@@ -8,12 +10,13 @@ li{
     list-style-type: none;
 }
 .page-link{
-    color: cornflowerblue;
+    color: #4998cb;
     text-decoration: none;
-    height:20px;
+    min-height:20px;
+    width:150px;
     padding:10px;
     display: block;
 }
 .page-link:active{
-    background-color: lightblue;
+    background-color: #1e73be;
 }

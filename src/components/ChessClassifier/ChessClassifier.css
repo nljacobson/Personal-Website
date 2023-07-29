@@ -1,16 +1,41 @@
-.chess-wrapper{
+.chess-description{
+    background-color:#f9f9f9;
+    padding-left:40px;
+    max-width:100%;
+}
+.chess-wrapper-vertical{
+    background-color:#f9f9f9;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.chess-wrapper-horizontal{
+    background-color:#f9f9f9;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width:100%;
-}
-.player-guesses{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    margin:5px;
+    min-width:800px;
 }
 .chessboard{
-    min-width:400px;
-    min-height:400px;
+    min-width:40%;
+    min-height:40%;
+}
+.reset-button{
+    background-color: #4998cb;
+    color:#f9f9f9;
+    width: 100%;
+    align-self: center;
+    padding:8px;
+    border:#4998cb;
+}
+.button-wrapper{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.chess-descriptions-wrapper{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
