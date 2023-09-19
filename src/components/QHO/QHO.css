@@ -1,4 +1,42 @@
-.sub-graph{
-    height:400px;
-    width:400px;
+.qho-page{
+    width:100%;
+    height:100%;
 }
+.graph-container{
+    width:80%;
+    height:100%;
+}
+.qho-button-wrapper{
+    display:flex;
+    padding:8px;
+    flex-direction:column;
+    align-items:center;
+    justify-content: space-between;
+}
+.horizontal-graph-wrapper{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height:250px;
+    width:800px;
+}
+.vertical-graph-wrapper{
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+}
+.qho-blue-button{
+    color:#f9f9f9;
+    width: 100px;
+    align-self: center;
+    padding:4px;
+    border:#4998cb;
+}
+.qho-blue-button:hover{
+    background-color: #8FA3BC;
+}
+.qho-button-wrapper{
+    height:50%;
+}
+
+

@@ -4,7 +4,8 @@ import { PlayerList } from './PlayerList.js';
 import { Chessboard } from 'react-chessboard';
 import axios from "axios";
 import { Chess } from 'chess.js';
-import { chessDescription, howToUse } from './ChessDescription.js';
+import { ChessDescription } from './ChessDescription.js';
+import { Button, Grid } from '@mui/material';
 export function ChessClassifier() {
     const [whiteGuesses, setWhiteGuesses] = useState([])
     const [blackGuesses, setBlackGuesses] = useState([])
@@ -45,41 +46,78 @@ export function ChessClassifier() {
         setBlackGuesses([]);
         setWhiteGuesses([]);
     }
-    return (
-        <div className='chess-wrapper-horizontal'>
+    const old = false;
+    if (old) {
+        return (
+            <div className='chess-wrapper-horizontal'>
                 <PlayerList
                     props={[whiteGuesses, 'White']}
                 />
-            <div className='chessboard'>
-                <div className='button-wrapper'>
-                    <button className='reset-button'
-                        onClick={resetBoard}>
-                        Reset
-                    </button>
+                <div className='chessboard'>
+                    <div className='button-wrapper'>
+                        <Button variant='contained'
+                            onClick={resetBoard}>
+                            Reset
+                        </Button>
+                    </div>
+                    <Chessboard
+                        id="Configurable Board"
+                        position={game.fen()}
+                        onArrowsChange={function noRefCheck() { }}
+                        onDragOverSquare={function noRefCheck() { }}
+                        onMouseOutSquare={function noRefCheck() { }}
+                        onMouseOverSquare={function noRefCheck() { }}
+                        onPieceClick={function noRefCheck() { }}
+                        onPieceDragBegin={function noRefCheck() { }}
+                        onPieceDragEnd={function noRefCheck() { }}
+                        onPieceDrop={onDrop}
+                        onSquareClick={function noRefCheck() { }}
+                        onSquareRightClick={function noRefCheck() { }}
+                    />
                 </div>
-                <Chessboard
-                    id="Configurable Board"
-                    position={game.fen()}
-                    onArrowsChange={function noRefCheck() { }}
-                    onDragOverSquare={function noRefCheck() { }}
-                    onMouseOutSquare={function noRefCheck() { }}
-                    onMouseOverSquare={function noRefCheck() { }}
-                    onPieceClick={function noRefCheck() { }}
-                    onPieceDragBegin={function noRefCheck() { }}
-                    onPieceDragEnd={function noRefCheck() { }}
-                    onPieceDrop={onDrop}
-                    onSquareClick={function noRefCheck() { }}
-                    onSquareRightClick={function noRefCheck() { }}
-                />
-            </div>
                 <PlayerList
                     props={[blackGuesses, 'Black']}
                 />
-            <div className='chess-description-wrapper'>
-                <h5 className='chess-description'>Chess Player Classifier</h5>
-                <p className='chess-description' >{chessDescription}</p>
-                <p className='chess-description' >{howToUse}</p>
+                <ChessDescription />
             </div>
-        </div>
-    )
+        )
+    }
+    else {
+        return (
+            <Grid spacing={1} container>
+                <Grid item xs={2}>
+                    <PlayerList props={[whiteGuesses, 'White']} />
+                </Grid>
+                <Grid item xs={3}>
+                    <Button variant='contained'
+                        onClick={resetBoard}>
+                        Reset
+                    </Button>
+                    <Chessboard
+                        id="Configurable Board"
+                        position={game.fen()}
+                        onArrowsChange={function noRefCheck() { }}
+                        onDragOverSquare={function noRefCheck() { }}
+                        onMouseOutSquare={function noRefCheck() { }}
+                        onMouseOverSquare={function noRefCheck() { }}
+                        onPieceClick={function noRefCheck() { }}
+                        onPieceDragBegin={function noRefCheck() { }}
+                        onPieceDragEnd={function noRefCheck() { }}
+                        onPieceDrop={onDrop}
+                        onSquareClick={function noRefCheck() { }}
+                        onSquareRightClick={function noRefCheck() { }}
+                    />
+
+                </Grid>
+                <Grid item xs={2}>
+                    <PlayerList props={[blackGuesses, 'Black']} />
+                </Grid>
+                <Grid item xs={3}>
+                <ChessDescription />
+                </Grid>
+                <Grid item xs={1}>
+            </Grid>
+            </Grid>
+        )
+    }
 }

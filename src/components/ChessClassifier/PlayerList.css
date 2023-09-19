@@ -1,12 +1,4 @@
-.player-list{
-    display:flex;
-    flex-direction:column;
-    justify-content: flex-start;
-    min-width:200px;
-    min-height:100%;
-    padding-left:10px;
-    padding-right:10px;
-}
+
 .player-entry{
     display:flex;
     flex-direction:row;

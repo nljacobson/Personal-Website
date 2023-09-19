@@ -1,22 +1,4 @@
-.menu{
-    background-color:#f9f9f9;
-    color:#4998cb;
-    display:flex;
-    flex-direction: column;
-    align-content: flex-start;
-    flex-grow:0;
-}
 li{
     list-style-type: none;
-}
-.page-link{
-    color: #4998cb;
-    text-decoration: none;
-    min-height:20px;
-    width:150px;
-    padding:10px;
-    display: block;
-}
-.page-link:active{
-    background-color: #1e73be;
+    padding: 2px;
 }

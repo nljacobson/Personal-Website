@@ -1,35 +1,35 @@
-import { FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
-import { IoIosMail } from 'react-icons/io';
+import { Box, Typography, ButtonGroup, IconButton } from '@mui/material';
+import LocalPhoneSharpIcon from '@mui/icons-material/LocalPhoneSharp';
+import EmailSharpIcon from '@mui/icons-material/EmailSharp';
+import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import './Header.css';
 export function Header() {
     return (
-        <header>
-            <div className='header'>
-                <div className='left-header'>
-                    <h1>
-                        Noah Jacobson
-                    </h1>
-                    <h3>
-                        Software Developer
-                    </h3>
-                </div>
-                <div className='middle-header'>
-                    <FaPhoneAlt className="header-icon" />
-                    <IoIosMail className="header-icon" />
-                    <FaMapMarkerAlt className="header-icon" />
-                </div>
-                <div className='right-header'>
-                    <h5 className='header-contacts'>
-                        noah.l.jacobson@gmail.com
-                    </h5>
-                    <h5 className='header-contacts'>
-                        508 - 314 - 7503
-                    </h5>
-                    <h5 className='header-contacts'>
-                        132 Oxbow Road, Wayland MA
-                    </h5>
-                </div>
-            </div>
-        </header>
-    );
+        <Box
+            backgroundColor='info.main'
+            display='flex'
+            flexDirection='row'>
+            <Box
+                width='80%'>
+                <Typography color='info.text' m={2} sx={{fontFamily: "Gill Sans"}} >Noah Jacobson</Typography>
+                <Typography color='info.text' m={2} ml={4} sx={{fontFamily: "Gill Sans"}} >Software Developer and Physicist</Typography>
+            </Box>
+            <ButtonGroup
+                orientation='vertical'
+            >
+                <IconButton color='primary'>
+                    <LocalPhoneSharpIcon />
+                    <Typography width={256} sx={{ textAlign: 'left', paddingLeft: '3px' }}>508-314-7503</Typography>
+                </IconButton >
+                <IconButton color='primary'>
+                    <EmailSharpIcon />
+                    <Typography width={256} sx={{ textAlign: 'left', paddingLeft: '3px' }}>Noah.l.jacobson@gmail.com</Typography>
+                </IconButton>
+                <IconButton color='primary'>
+                    <FmdGoodIcon />
+                    <Typography width={256} sx={{ textAlign: 'left', paddingLeft: '3px' }}>Quincy, MA</Typography>
+                </IconButton>
+            </ButtonGroup>
+        </Box>
+    )
 }

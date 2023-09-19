@@ -1,17 +1,8 @@
 .app{
   background-color:#f9f9f9;
-  display:flex;
-  flex-direction: column;
-  min-height: 100%;
+  width: 100vw;
+  height: 90vh;
 }
-.header{
-  flex-grow:0;
-}
-.nav-and-body{
-  display:flex;
-  flex-grow:1;
-}
-.navbar {
-  width:80px;
-  flex-grow:0;
+.navbar{
+  height:100%;
 }
