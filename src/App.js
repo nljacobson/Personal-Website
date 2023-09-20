@@ -8,7 +8,11 @@ import { ThemeProvider } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 import { theme } from './components/Theme.js';
 import { ChessClassifier } from './components/ChessClassifier/ChessClassifier.js';
+import React, { useEffect } from 'react';
 export default function App() {
+  useEffect(() => {
+    document.title = 'Noah Jacobson';
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <Grid container className='app'
@@ -24,7 +28,7 @@ export default function App() {
             <Routes className='routes'>
               <Route path='/' element={Resume()} />
               <Route path='/chess' element={<ChessClassifier />} />
-              <Route path='/qho' element={QHO(theme)} />
+              <Route path='/qho' element={QHO()} />
               <Route path='/*' element={<p>Error</p>} />
             </Routes>
           </Grid>
