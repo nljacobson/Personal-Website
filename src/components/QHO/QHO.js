@@ -101,9 +101,10 @@ export function QHO() {
         if (startable) {
             setStartable(false);
             setMuTicks(range(0, n.current + 1, .5));
-            const port = 5000;
+            const port = '0000';
             const host = window.location.hostname
-            return axios.post(`http://${host}:${port}/api/post_qho_first`,
+            const hostname = 'http://noahjacobsonbackend.azurewebsites.net/api/post_qho_first' //`http://${host}:${port}/api/post_qho_first`
+            return axios.post(hostname,
                 {
                     params: {
                         n: n.current,
@@ -120,7 +121,8 @@ export function QHO() {
     async function getNextRunData(runData) {
         const port = 5000;
         const host = window.location.hostname;
-        const post = await axios.post(`http://${host}:${port}/api/post_qho_run`,
+        const hostname = 'http://noahjacobsonbackend.azurewebsites.net/api/post_qho_run'//`http://${host}:${port}/api/post_qho_run`
+        const post = await axios.post(hostname,
             {
                 params: {
                     run_data: runData,
