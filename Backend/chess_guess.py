@@ -6,8 +6,8 @@ from tensorflow import keras
 def get_chess_guesses(fen):
     # Split into lines
     game = get_numeric_game(fen)
-    white_model = tf.keras.models.load_model('./Backend/white_player_model')
-    black_model = tf.keras.models.load_model('./Backend/black_player_model')
+    white_model = tf.keras.models.load_model('./white_player_model')
+    black_model = tf.keras.models.load_model('./black_player_model')
     white_output = white_model.predict(game).ravel()
     black_output = black_model.predict(game).ravel()
     print(white_output.argmax())

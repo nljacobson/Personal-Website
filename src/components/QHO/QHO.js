@@ -106,8 +106,15 @@ export function QHO() {
             const hostname = 'https://noahjacobsonbackend.azurewebsites.net/api/post_qho_first' //`http://${host}:${port}/api/post_qho_first`
             return axios.post(hostname,
                 {
-                    params: {
-                        n: n.current,
+                    mode: 'no-cors',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json',
+                },
+                withCredentials: true,
+                credentials: 'same-origin',
+                params: {
+                                    n: n.current,
                     }
                 })
                 .then((response) => {
@@ -124,6 +131,13 @@ export function QHO() {
         const hostname = 'https://noahjacobsonbackend.azurewebsites.net/api/post_qho_run'//`http://${host}:${port}/api/post_qho_run`
         const post = await axios.post(hostname,
             {
+                    mode: 'no-cors',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json',
+                },
+                withCredentials: true,
+                credentials: 'same-origin',
                 params: {
                     run_data: runData,
                 },
@@ -176,12 +190,8 @@ function getStepSize(itArray){
     var stepMult = 5; 
     var maxValue = Math.max(...itArray);
     if (maxValue !== 0){
-        console.log('maxValue')
-        console.log(maxValue);
         var logTen = Math.round(Math.log10(maxValue));
-        console.log(logTen);
         var stepSize = stepMult*(10**(logTen - orderMagReduct));
-        console.log(stepSize);
         return stepSize
     }
     else{
