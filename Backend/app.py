@@ -4,7 +4,8 @@ import chess_guess
 import QHO
 import json
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
+allowed_origins = ["https://kind-river-043849610.3.azurestaticapps.net"]
+cors = CORS(app, supports_credentials=True, origins=allowed_origins)
 
 @app.route('/api/chess')
 def get_chess_guesses_flask():
