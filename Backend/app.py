@@ -30,4 +30,4 @@ def post_qho_run_flask():
     
 
 if __name__ == '__main__':
-    app.run(ssl_context='adhoc', port=5000)
+    app.run(ssl_context='adhoc')
