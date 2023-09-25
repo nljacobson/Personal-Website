@@ -4,8 +4,7 @@ import chess_guess
 import QHO
 import json
 app = Flask(__name__)
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route('/api/chess')
 def get_chess_guesses_flask():
