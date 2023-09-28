@@ -27,7 +27,8 @@ def post_qho_run_flask():
     run_data = QHO.post_qho_run(run_data)
     run_data_json = json.dumps(run_data)
     return run_data_json
-    
-
+@app.route('/api/testpost', methods= ['POST'])
+def test_post():
+    return 'Successfuly Post'
 if __name__ == '__main__':
     app.run(ssl_context='adhoc', port=5000)
