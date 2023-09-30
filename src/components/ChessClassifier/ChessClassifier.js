@@ -33,7 +33,7 @@ export function ChessClassifier() {
     function getGuesses(fen) {
         //const port = 5000;
         //const host = window.location.hostname
-        const hostname = `https://noahjacobsonbackend.azurewebsites.net/api/chess?fen=${fen}` //`http://${host}:${port}/api/chess?fen=${fen}`
+        const hostname = `https://noah-jacobson-backend.azurewebsites.net/api/chess?fen=${fen}` //`http://${host}:${port}/api/chess?fen=${fen}`
         axios.get(hostname)
             .then((response) => {
                 const res = response.data
