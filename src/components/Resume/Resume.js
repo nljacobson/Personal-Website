@@ -1,8 +1,11 @@
 import './Resume.css';
-export function Resume(){
-  return(
-    <object data={"https://personal-website-cloud-storage.s3.amazonaws.com/NoahJacobsonResume.pdf"} type="application/pdf" width="1000vh" height="1000vh">
-      <p>Unable to display PDF file. <a href={"https://personal-website-cloud-storage.s3.amazonaws.com/NoahJacobsonResume.pdf"}>Download</a> instead.</p>
-    </object>  
-  )
+export function Resume() {
+    return (
+      <iframe 
+      title="resumePDF"
+      src="https://drive.google.com/file/d/1HDXIyvLEKEoRbY6H5k33EmyP9QM3R-9Z/preview" 
+      width="1000vh" 
+      height="100%" 
+      allow="autoplay"/>
+    )
 }
