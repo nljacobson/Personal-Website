@@ -1,5 +1,5 @@
 import './App.css';
-import { Header } from './components/Header/Header.js';
+import { Header } from './components/Header/Header.tsx';
 import { NavBar } from './components/NavBar/NavBar.js';
 import { Resume } from './components/Resume/Resume.tsx';
 import { QHO } from './components/QHO/QHO.js';

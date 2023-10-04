@@ -2,7 +2,7 @@ import { React, useState, useRef } from 'react';
 import './QHO.css';
 import './QHODescription';
 import axios from "axios";
-import { Slider, Button, Grid, Box} from '@mui/material';
+import { Slider, Button, Grid} from '@mui/material';
 import { BiaxialStyledLineGraph } from './BiaxialStyledLineGraph';
 import { QHODescription } from './QHODescription';
 export function QHO() {
@@ -27,7 +27,7 @@ export function QHO() {
     const theme = require('../../components/Theme.tsx').theme;
     return (
         <Grid container spacing={1} className='qho-page'>
-            <Grid item xs={5} className='graphs'>
+            <Grid item xs={6} className='graphs'>
                 <Grid container spacing={1} className='graph-container'>
                     <Grid item xs={12}>
                         <BiaxialStyledLineGraph className='main-graph'
@@ -91,9 +91,6 @@ export function QHO() {
             </Grid>
             <Grid item xs={3}>
                 <QHODescription/>
-            </Grid>
-            <Grid item xs={1}>
-                <Box></Box>
             </Grid>
         </Grid>
     )
