@@ -24,7 +24,7 @@ export function QHO() {
     const funcTicks = range(-9, 9, 3);
     const ampTicks = range(-1, 1, .25);
     //Themeing info
-    const theme = require('components/Theme.js').theme;
+    const theme = require('../../components/Theme.tsx').theme;
     return (
         <Grid container spacing={1} className='qho-page'>
             <Grid item xs={5} className='graphs'>

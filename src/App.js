@@ -1,12 +1,12 @@
 import './App.css';
 import { Header } from './components/Header/Header.js';
 import { NavBar } from './components/NavBar/NavBar.js';
-import { Resume } from './components/Resume/Resume.js';
+import { Resume } from './components/Resume/Resume.tsx';
 import { QHO } from './components/QHO/QHO.js';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from '@mui/material/styles';
 import { Grid } from '@mui/material';
-import { theme } from './components/Theme.js';
+import { theme } from './components/Theme.tsx';
 import { ChessClassifier } from './components/ChessClassifier/ChessClassifier.js';
 import React, { useEffect } from 'react';
 export default function App() {

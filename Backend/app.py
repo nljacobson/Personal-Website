@@ -4,7 +4,7 @@ import chess_guess
 import QHO
 import json
 app = Flask(__name__)
-allowed_origins = ["https://kind-river-043849610.3.azurestaticapps.net"]
+allowed_origins = ["*"]
 cors = CORS(app, supports_credentials=True, origins=allowed_origins)
 
 @app.route('/api/chess')
@@ -30,5 +30,12 @@ def post_qho_run_flask():
 @app.route('/api/testpost', methods= ['POST'])
 def test_post():
     return 'Successfuly Post'
+
+@app.route('/')
+def index():
+   print('Request for index page received')
+   return '<div>HELLO WORLD</div>'
+
 if __name__ == '__main__':
-    app.run(ssl_context='adhoc', port=5000)
+    app.run()
+    #app.run(ssl_context='adhoc', port=5000)
