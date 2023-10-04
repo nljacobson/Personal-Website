@@ -2,7 +2,7 @@ import { Box, Typography, ButtonGroup, IconButton } from '@mui/material';
 import LocalPhoneSharpIcon from '@mui/icons-material/LocalPhoneSharp';
 import EmailSharpIcon from '@mui/icons-material/EmailSharp';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
-import './Header.css';
+//import './Header.css';
 export function Header() {
     return (
         <Box
@@ -11,8 +11,8 @@ export function Header() {
             flexDirection='row'>
             <Box
                 width='80%'>
-                <Typography color='info.text' m={2} sx={{fontFamily: "Gill Sans"}} >Noah Jacobson</Typography>
-                <Typography color='info.text' m={2} ml={4} sx={{fontFamily: "Gill Sans"}} >Software Developer and Physicist</Typography>
+                <Typography color='info.light' m={2} sx={{fontFamily: "Gill Sans"}} >Noah Jacobson</Typography>
+                <Typography color='info.light' m={2} ml={4} sx={{fontFamily: "Gill Sans"}} >Software Developer and Physicist</Typography>
             </Box>
             <ButtonGroup
                 orientation='vertical'

@@ -16,7 +16,7 @@ export  const theme = createTheme({
     },
     info: {
       main: '#0b032d',
-      dark:'#f9f9f9',
+      light:'#f9f9f9',
     },
   },
   typography: {
