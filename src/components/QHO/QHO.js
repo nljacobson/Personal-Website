@@ -152,12 +152,14 @@ export function QHO() {
     }
 
     async function performRun(n) {
+        if (startable){
         var runData = await startRun(n);
         var runCount = 0;
         while (!runData['done'] && runCount < 10) {
             runData = await getNextRunData(runData);
         }
         setStartable(true);
+    }
     }
 }
 

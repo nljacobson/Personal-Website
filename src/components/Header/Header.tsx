@@ -4,11 +4,15 @@ import EmailSharpIcon from '@mui/icons-material/EmailSharp';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 export function Header() {
     return (
-        <Grid sx={{backgroundColor:'info.main'}} container direction = {'row'}>
+        <Grid sx={{backgroundColor:'info.main', height:'100%'}} container direction = {'row'}>
             <Grid item xs ={2}>
-                <Grid container direction ={'column'}>
-                    <Typography color='info.light' m={2} sx={{fontFamily: "Gill Sans"}} >Noah Jacobson</Typography>
-                    <Typography color='info.light' m={2} ml={4} sx={{fontFamily: "Gill Sans"}} >Software Developer and Physicist</Typography>
+                <Grid container direction ={'column'} padding = {3} spacing={3}>
+                    <Grid item>
+                    <Typography color='info.light' sx={{fontFamily: "Gill Sans"}} >Noah Jacobson</Typography>
+                    </Grid>
+                    <Grid item>
+                    <Typography color='info.light' ml={3} sx={{fontFamily: "Gill Sans"}} >Software Developer and Physicist</Typography>
+                    </Grid>
                 </Grid>
             </Grid>
             <Grid item xs={10}>

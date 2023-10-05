@@ -4,7 +4,7 @@ import { ExternalLink } from 'react-external-link';
 export function QHODescription() {
     return (
         <div>
-            <Typography variant="h5">
+            <Typography variant="h6">
                Quantum Harmonic Oscillator using a squared operator iterative method
             </Typography>
             <br/>

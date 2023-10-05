@@ -1,6 +1,6 @@
 import './App.css';
 import { Header } from './components/Header/Header.tsx';
-import { NavBar } from './components/NavBar/NavBar.js';
+import { NavBar } from './components/NavBar/NavBar.tsx';
 import { Resume } from './components/Resume/Resume.tsx';
 import { QHO } from './components/QHO/QHO.js';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -15,24 +15,27 @@ export default function App() {
   }, []);
   return (
     <ThemeProvider theme={theme}>
-      <Grid container className='app'
-      spacing={1}>
-        <Grid item xs={12}>
+      <Grid container direction={'column'} style={{ flexWrap: 'nowrap' }} sx={{width: '100vw', height:'100vh'}}>
+        <Grid item xs={1}>
           <Header />
         </Grid>
-        <Router>
-          <Grid item xs={2} className='navbar'>
-            <NavBar />
+        <Grid item xs={11}>
+          <Grid container direction={'row'} sx={{height:'100%'}}>
+            <Router>
+              <Grid item xs={2}>
+                <NavBar />
+              </Grid>
+              <Grid item xs={10}>
+                <Routes>
+                  <Route path='/' element={Resume()} />
+                  <Route path='/chess' element={<ChessClassifier />} />
+                  <Route path='/qho' element={QHO()} />
+                  <Route path='/*' element={<p>Error</p>} />
+                </Routes>
+              </Grid>
+            </Router >
           </Grid>
-          <Grid item xs={10}>
-            <Routes className='routes'>
-              <Route path='/' element={Resume()} />
-              <Route path='/chess' element={<ChessClassifier />} />
-              <Route path='/qho' element={QHO()} />
-              <Route path='/*' element={<p>Error</p>} />
-            </Routes>
-          </Grid>
-        </Router >
+        </Grid>
       </Grid>
     </ThemeProvider>
   );
