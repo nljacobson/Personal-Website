@@ -1,8 +1,7 @@
-import './App.css';
 import { Header } from './components/Header/Header.tsx';
 import { NavBar } from './components/NavBar/NavBar.tsx';
 import { Resume } from './components/Resume/Resume.tsx';
-import { QHO } from './components/QHO/QHO.js';
+import { QHO } from './components/QHO/QHO.tsx';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from '@mui/material/styles';
 import { Grid } from '@mui/material';

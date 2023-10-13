@@ -1,10 +1,25 @@
-import { React } from 'react';
+import React from 'react';
 import { LineChart, XAxis, YAxis, CartesianGrid, Line, ResponsiveContainer, Tooltip, Label, Legend } from 'recharts';
-export function BiaxialStyledLineGraph(props) {
+import { Theme } from '@mui/material/styles';
+interface Props{
+    X:number[]
+    xTicks:number[]
+    Y0:number[]
+    Y1:number[]
+    yAxisDirections:string[]
+    leftYAxisLabel:string
+    leftTicks:number[]
+    rightYAxisLabel:string
+    rightTicks:number[]
+    XAxisLabel:string
+    theme: Theme
+}
+export function BiaxialStyledLineGraph(props: Props) {
     const data = props.X.map((x, xnum) => ({'x':x,  'y0':props.Y0[xnum], 'y1':props.Y1[xnum]}));
-    const [strokeColor0, strokeColor1]= [props.theme.palette.info.main, props.theme.palette.error.main];
+    const strokeColor0 = props.theme.palette.info.main
+    const strokeColor1 = props.theme.palette.error.main;
     return (
-        <ResponsiveContainer>
+        <ResponsiveContainer height="35%">
         <LineChart 
         data = {data}
         margin = {{
@@ -21,7 +36,7 @@ export function BiaxialStyledLineGraph(props) {
             </XAxis>
             <YAxis yAxisId='y0' ticks={props.leftTicks}>
                 <Label 
-                style={{textAnchor: "middle", color: {strokeColor0}}}
+                style={{textAnchor: "middle", color:strokeColor0}}
                 value = {props.leftYAxisLabel}
                 angle={-90}
                 position='left'/>
