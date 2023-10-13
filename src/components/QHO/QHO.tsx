@@ -21,7 +21,7 @@ interface RunData{
     num_iters: number
     u:number[]
 }
-export function QHO() {
+export function QHO(serverStatus:boolean) {
     //Webpage specific variables
     var n: numRefObject = useRef<number>(0);
     const [startable, setStartable] = useState<boolean>(true);
@@ -49,7 +49,7 @@ export function QHO() {
                         color='primary'
                         fullWidth={true}
                         onClick={performRun}
-                    >{startable ? 'Start Iterations' : 'Calculating'}
+                    >{getButtonText()}
                     </Button>
                     <Slider
                         defaultValue={0}
@@ -129,7 +129,6 @@ export function QHO() {
         }
     }
     async function getNextRunData(runData:RunData) {
-        console.log(runData)
         const hostname = 'https://noah-jacobson-backend.azurewebsites.net/api/post_qho_run'
         const post = await axios.post(hostname,
             {
@@ -164,6 +163,18 @@ export function QHO() {
                 runData = await getNextRunData(runData);
             }
             setStartable(true);
+        }
+    }
+
+    function getButtonText(){
+        if (!serverStatus){
+            return 'Starting Backend Server from cold state. This may take a minute'
+        }
+        if (!startable){
+            return 'Calculating'
+        }
+        else{
+            return 'Start Iterations'
         }
     }
 }

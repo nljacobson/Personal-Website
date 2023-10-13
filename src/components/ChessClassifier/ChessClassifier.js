@@ -1,12 +1,11 @@
 import { React, useState } from 'react';
-import './ChessClassifier.css';
-import { PlayerList } from './PlayerList.js';
+import { PlayerList } from './PlayerList.tsx';
 import { Chessboard } from 'react-chessboard';
 import axios from "axios";
 import { Chess } from 'chess.js';
 import { ChessDescription } from './ChessDescription.js';
 import { Button, Grid } from '@mui/material';
-export function ChessClassifier() {
+export function ChessClassifier(serverStatus:boolean) {
     const [whiteGuesses, setWhiteGuesses] = useState([])
     const [blackGuesses, setBlackGuesses] = useState([])
     const [game, setGame] = useState(new Chess());
@@ -46,21 +45,21 @@ export function ChessClassifier() {
         setWhiteGuesses([]);
     }
     return (
-        <Grid container>
-            <Grid item xs={8}>
+        <Grid container sx={{margin:0}}>
+            <Grid item xs={12} lg={8}>
                 <Grid container padding={2}>
                     <Button variant='contained'
                         color='primary'
                         fullWidth={true}
                         onClick={resetBoard}>
-                        Reset
+                        {serverStatus ? 'Reset' : 'Starting Backend Server from cold state. This may take a minute'}
                     </Button>
                     </Grid>
-                    <Grid container>
-                        <Grid item xs={3}>
-                            <PlayerList props={[whiteGuesses, 'White']} />
+                    <Grid container >
+                    <Grid item xs={12} lg={3} margin={0} >
+                            <PlayerList guessesArray={blackGuesses} color={'Black'} />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={12} lg={6}>
                             <Chessboard
                                 id="Configurable Board"
                                 position={game.fen()}
@@ -74,15 +73,17 @@ export function ChessClassifier() {
                                 onPieceDrop={onDrop}
                                 onSquareClick={function noRefCheck() { }}
                                 onSquareRightClick={function noRefCheck() { }}
+                                margin={0}
                             />
 
                         </Grid>
-                        <Grid item xs={3}>
-                            <PlayerList props={[blackGuesses, 'Black']} />
+                        <Grid item sm = {12} lg={3}>
+                            <PlayerList guessesArray={whiteGuesses} color={'White'} />
                         </Grid>
+                        
                 </Grid>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={12} lg = {4}>
                 <ChessDescription />
             </Grid>
         </Grid>
