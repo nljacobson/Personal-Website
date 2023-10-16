@@ -54,6 +54,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: python-app
+          path: ./Backend
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
@@ -65,7 +66,3 @@ jobs:
           app-name: 'noah-jacobson-backend'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1482CA4F9C18492682E579A5DC2E59C8 }}
-      - name: 'Run Flask App'
-        run: export FLASK_APP=Backend/app.py
-      - name: 'Start Flask App'
-        run:  python -m flask run
