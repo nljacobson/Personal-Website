@@ -165,7 +165,6 @@ export function QHO(serverStatus:boolean) {
             setStartable(true);
         }
     }
-
     function getButtonText(){
         if (!serverStatus){
             return 'Starting Backend Server from cold state. This may take a minute'
