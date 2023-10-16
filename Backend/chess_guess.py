@@ -1,4 +1,4 @@
-from Model.top_players import get_player_name
+from top_players import get_player_name
 from bidict import bidict
 import numpy as np
 import tensorflow as tf
