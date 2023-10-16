@@ -67,5 +67,5 @@ jobs:
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1482CA4F9C18492682E579A5DC2E59C8 }}
       - name: 'Run Flask App'
         run: export FLASK_APP=Backend/app.py
-      - nam: 'Start Flask App'
+      - name: 'Start Flask App'
         run: flask run
