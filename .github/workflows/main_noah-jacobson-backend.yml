@@ -61,8 +61,8 @@ jobs:
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
-        path: ./Backend
         with:
+          path: ./Backend
           app-name: 'noah-jacobson-backend'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1482CA4F9C18492682E579A5DC2E59C8 }}
