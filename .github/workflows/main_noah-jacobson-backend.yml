@@ -68,4 +68,4 @@ jobs:
       - name: 'Run Flask App'
         run: export FLASK_APP=Backend/app.py
       - name: 'Start Flask App'
-        run: flask run
+        run:  python -m flask run
