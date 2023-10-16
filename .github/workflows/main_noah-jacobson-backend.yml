@@ -65,3 +65,4 @@ jobs:
           app-name: 'noah-jacobson-backend'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1482CA4F9C18492682E579A5DC2E59C8 }}
+          startUpCommand: 'cd Backend; flask run'
