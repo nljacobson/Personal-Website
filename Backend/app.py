@@ -29,7 +29,7 @@ def post_qho_run_flask():
     return run_data_json
 @app.route('/api/testpost', methods= ['POST'])
 def test_post():
-    return 'Successfuly Post'
+    return 'Successful Post'
 
 @app.route('/')
 def index():

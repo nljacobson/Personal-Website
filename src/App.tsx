@@ -1,13 +1,13 @@
-import { Header } from './components/Header/Header.tsx';
-import { NavBar } from './components/NavBar/NavBar.tsx';
-import { Resume } from './components/Resume/Resume.tsx';
-import { QHO } from './components/QHO/QHO.tsx';
+import { Header } from './components/Header/Header';
+import { NavBar } from './components/NavBar/NavBar';
+import { Resume } from './components/Resume/Resume';
+import { QHO } from './components/QHO/QHO';
+import { theme } from './components/Theme';
+import { ChessClassifier } from './components/ChessClassifier/ChessClassifier';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from '@mui/material/styles';
 import { Grid } from '@mui/material';
-import { theme } from './components/Theme.tsx';
-import { ChessClassifier } from './components/ChessClassifier/ChessClassifier.js';
-import React, { useEffect, useState } from 'react';
 import axios from "axios";
 export default function App() {
   const [serverStatus, setServerStatus] = useState(false);

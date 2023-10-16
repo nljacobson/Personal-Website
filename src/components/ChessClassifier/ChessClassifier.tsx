@@ -1,15 +1,15 @@
-import { React, useState } from 'react';
-import { PlayerList } from './PlayerList.tsx';
+import React, { useState } from 'react';
+import { PlayerList } from './PlayerList';
 import { Chessboard } from 'react-chessboard';
 import axios from "axios";
-import { Chess } from 'chess.js';
-import { ChessDescription } from './ChessDescription.js';
+import { Chess, Square } from 'chess.js';
+import { ChessDescription } from './ChessDescription';
 import { Button, Grid } from '@mui/material';
 export function ChessClassifier(serverStatus:boolean) {
     const [whiteGuesses, setWhiteGuesses] = useState([])
     const [blackGuesses, setBlackGuesses] = useState([])
     const [game, setGame] = useState(new Chess());
-    function onDrop(startSquare, endSquare) {
+    function onDrop(startSquare: Square, endSquare: Square) {
         const gameCopy = new Chess();
         gameCopy.loadPgn(game.pgn());
         try {
@@ -27,9 +27,10 @@ export function ChessClassifier(serverStatus:boolean) {
         catch {
             console.log("Illegal Move!")
         }
+        return true
     }
 
-    function getGuesses(fen) {
+    function getGuesses(fen: string) {
         const hostname = `https://noah-jacobson-backend.azurewebsites.net/api/chess?fen=${fen}`
         axios.get(hostname)
             .then((response) => {
@@ -73,7 +74,6 @@ export function ChessClassifier(serverStatus:boolean) {
                                 onPieceDrop={onDrop}
                                 onSquareClick={function noRefCheck() { }}
                                 onSquareRightClick={function noRefCheck() { }}
-                                margin={0}
                             />
 
                         </Grid>
