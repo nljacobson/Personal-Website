@@ -5,7 +5,7 @@ import axios from "axios";
 import { Chess, Square } from 'chess.js';
 import { ChessDescription } from './ChessDescription';
 import { Button, Grid } from '@mui/material';
-export function ChessClassifier(serverStatus:boolean) {
+export function ChessClassifier(serverStatus:boolean, backendHostname:string) {
     const [whiteGuesses, setWhiteGuesses] = useState([])
     const [blackGuesses, setBlackGuesses] = useState([])
     const [game, setGame] = useState(new Chess());
@@ -22,7 +22,6 @@ export function ChessClassifier(serverStatus:boolean) {
             if (game.moveNumber() >= 0) {
                 getGuesses(gameCopy.fen())
             }
-
         }
         catch {
             console.log("Illegal Move!")
@@ -31,7 +30,7 @@ export function ChessClassifier(serverStatus:boolean) {
     }
 
     function getGuesses(fen: string) {
-        const hostname = `https://noah-jacobson-backend.azurewebsites.net/api/chess?fen=${fen}`
+        const hostname = backendHostname + `/api/chess?fen=${fen}`
         axios.get(hostname)
             .then((response) => {
                 const res = response.data

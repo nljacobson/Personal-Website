@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button, Grid, Box } from '@mui/material';
 export function NavBar() {
-    // Idea for MUI button redirects from https://stackoverflow.com/questions/55796665/react-material-ui-router-redirect-button
     return (
-        <Box sx={{ backgroundColor: 'secondary.main', height: '100%', width:'100%', minWidth:'150px'}}>
+        <Box sx={{ backgroundColor: 'secondary.main', height:'100%'}}>
             <Grid container
                 direction='column'
             >
@@ -16,6 +15,9 @@ export function NavBar() {
                 <MenuItem
                     name='Quantum Harmonic Oscillator'
                     path='/qho' />
+                <MenuItem
+                    name='Wordle (Hard mode)'
+                    path='/wordle' />
             </Grid>
         </Box>
     )

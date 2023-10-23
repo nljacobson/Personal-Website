@@ -2,6 +2,7 @@ import { Header } from './components/Header/Header';
 import { NavBar } from './components/NavBar/NavBar';
 import { Resume } from './components/Resume/Resume';
 import { QHO } from './components/QHO/QHO';
+import { Wordle } from './components/Wordle/Wordle';
 import { theme } from './components/Theme';
 import { ChessClassifier } from './components/ChessClassifier/ChessClassifier';
 import React, { useEffect, useState } from 'react';
@@ -11,6 +12,7 @@ import { Grid } from '@mui/material';
 import axios from "axios";
 export default function App() {
   const [serverStatus, setServerStatus] = useState(false);
+  const backendHostname = 'https://noah-jacobson-backend.azurewebsites.net'
   useEffect(() => {
     document.title = 'Noah Jacobson';
     getTestPost();
@@ -30,8 +32,9 @@ export default function App() {
               <Grid item xs={10} sx={{ minWidth: '800px' }}>
                 <Routes>
                   <Route path='/' element={Resume()} />
-                  <Route path='/chess' element={ChessClassifier(serverStatus)} />
-                  <Route path='/qho' element={QHO(serverStatus)} />
+                  <Route path='/chess' element={ChessClassifier(serverStatus, backendHostname)} />
+                  <Route path='/qho' element={QHO(serverStatus, backendHostname)} />
+                  <Route path='/wordle' element={Wordle(serverStatus, backendHostname)} />
                   <Route path='/*' element={<p>Error</p>} />
                 </Routes>
               </Grid>

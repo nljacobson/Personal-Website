@@ -21,7 +21,7 @@ interface RunData{
     num_iters: number
     u:number[]
 }
-export function QHO(serverStatus:boolean) {
+export function QHO(serverStatus:boolean, backendHostname:string) {
     //Webpage specific variables
     var n: numRefObject = useRef<number>(0);
     const [startable, setStartable] = useState<boolean>(true);
@@ -104,9 +104,7 @@ export function QHO(serverStatus:boolean) {
         if (startable) {
             setStartable(false);
             setMuTicks(range(0, n.current + 1, .5));
-            //const port = 5000;
-            //const host = window.location.hostname
-            const hostname = `https://noah-jacobson-backend.azurewebsites.net/api/post_qho_first` //`http://${host}:${port}/api/post_qho_first`
+            const hostname = backendHostname + `/api/post_qho_first`
             return axios.post(hostname,
                 {
                     mode: 'no-cors',
@@ -129,7 +127,7 @@ export function QHO(serverStatus:boolean) {
         }
     }
     async function getNextRunData(runData:RunData) {
-        const hostname = 'https://noah-jacobson-backend.azurewebsites.net/api/post_qho_run'
+        const hostname = backendHostname + '/api/post_qho_run'
         const post = await axios.post(hostname,
             {
                 mode: 'no-cors',
