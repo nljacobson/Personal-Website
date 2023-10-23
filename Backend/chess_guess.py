@@ -95,12 +95,8 @@ def fen_to_numeric(fen):
                 for i in range(int(input_item)):
                     output_row.append(0)
             else:
-                assert false
+                assert False
         game.append(output_row)
     game = np.array(game).T
     game_tensor = tf.convert_to_tensor([game])
     return game_tensor
-
-fen = 'r4rk1/2pnqppp/pp1b4/3b4/1P1Pn3/PQ1BPN2/R4PPP/2B2RK1 w - - 0 14'
-
-print(get_chess_guesses(fen))
