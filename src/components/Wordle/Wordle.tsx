@@ -93,14 +93,7 @@ export function Wordle(serverStatus: boolean, backendHostname: string) {
     }
     async function resetGame() {
         const hostname = backendHostname + `/api/wordlecreate`
-        return axios.get(hostname,
-            {
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Content-Type': 'application/json',
-                },
-                withCredentials: true,
-            })
+        return axios.get(hostname)
             .then((response) => {
                 const results = response.data;
                 guesses.current = results.guesses
