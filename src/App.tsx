@@ -5,11 +5,15 @@ import { QHO } from './components/QHO/QHO';
 import { Wordle } from './components/Wordle/Wordle';
 import { theme } from './components/Theme';
 import { ChessClassifier } from './components/ChessClassifier/ChessClassifier';
+import CentralContentLayout from './components/CentralContentLayout'
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 import axios from "axios";
+import { ChessDescription } from './components/ChessClassifier/ChessDescription';
+import { QHODescription } from './components/QHO/QHODescription';
+import { WordleDescription } from './components/Wordle/WordleDescription';
 export default function App() {
   const [serverStatus, setServerStatus] = useState(false);
   const backendHostname = 'https://noah-jacobson-backend.azurewebsites.net'
@@ -32,9 +36,21 @@ export default function App() {
               <Grid item xs={10} sx={{ minWidth: '800px' }}>
                 <Routes>
                   <Route path='/' element={Resume()} />
-                  <Route path='/chess' element={ChessClassifier(serverStatus, backendHostname)} />
-                  <Route path='/qho' element={QHO(serverStatus, backendHostname)} />
-                  <Route path='/wordle' element={Wordle(serverStatus, backendHostname)} />
+                  <Route path='/chess' element={
+                    <CentralContentLayout
+                    CentralContent={ChessClassifier(serverStatus, backendHostname)}
+                    Description={ChessDescription()}
+                    />} />
+                    <Route path='/qho' element={
+                    <CentralContentLayout
+                    CentralContent={QHO(serverStatus, backendHostname)}
+                    Description={QHODescription()}
+                    />} />
+                    <Route path='/wordle' element={
+                    <CentralContentLayout
+                    CentralContent={Wordle(serverStatus, backendHostname)}
+                    Description={WordleDescription()}
+                    />} />
                   <Route path='/*' element={<p>Error</p>} />
                 </Routes>
               </Grid>
@@ -48,7 +64,7 @@ export default function App() {
     setServerStatus(false);
     const hostname = backendHostname +'/api/testpost'
     console.log(hostname)
-    const post = await axios.post(hostname,
+    await axios.post(hostname,
       {
         mode: 'no-cors',
         headers: {

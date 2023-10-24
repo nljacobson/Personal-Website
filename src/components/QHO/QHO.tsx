@@ -1,27 +1,24 @@
 import React, { useState, useRef } from 'react';
-import './QHODescription';
 import axios from "axios";
 import { Slider, Button, Grid, Typography } from '@mui/material';
 import { BiaxialStyledLineGraph } from './BiaxialStyledLineGraph';
-import { QHODescription } from './QHODescription';
-
 interface numRefObject {
     current: number
 }
 
-interface RunData{
-    Vext:number[]
-    X:number[]
+interface RunData {
+    Vext: number[]
+    X: number[]
     counter: number
     done: boolean
     error: number
     error_record: number[]
-    itarray:number[]
+    itarray: number[]
     mu_record: number[]
     num_iters: number
-    u:number[]
+    u: number[]
 }
-export function QHO(serverStatus:boolean, backendHostname:string) {
+export function QHO(serverStatus: boolean, backendHostname: string) {
     //Webpage specific variables
     var n: numRefObject = useRef<number>(0);
     const [startable, setStartable] = useState<boolean>(true);
@@ -42,62 +39,57 @@ export function QHO(serverStatus:boolean, backendHostname:string) {
     //Themeing info
     const theme = require('../../components/Theme.tsx').theme;
     return (
-        <Grid container spacing={1} style={{height:'100%'}}>
-            <Grid item xs={8}>
-                <Grid container padding={2}>
-                    <Button variant='contained'
-                        color='primary'
-                        fullWidth={true}
-                        onClick={performRun}
-                    >{getButtonText()}
-                    </Button>
-                    <Slider
-                        defaultValue={0}
-                        orientation='horizontal'
-                        onChange={(event: Event, value: number | number[]) => {
-                            const flatValue: number = Array.isArray(value) ? value[0] : value;
-                            n.current = flatValue
-                        }}
-                        valueLabelDisplay="auto"
-                        step={1}
-                        marks
-                        min={0}
-                        max={10}
-                        size='medium'
-                    />
-                </Grid>
-                <Typography variant='h6' align='center'>Wave function and Potential function</Typography>
-                <BiaxialStyledLineGraph
-                    X={x}
-                    xTicks={funcTicks}
-                    Y0={u.map((n)=>{return round(n, 5)})}
-                    Y1={vext.map((n)=>{return round(n, 2)})}
-                    yAxisDirections={['left']}
-                    leftYAxisLabel='Probability Amplitude'
-                    rightYAxisLabel='Potential (units of energy)'
-                    XAxisLabel='X (units of space)'
-                    leftTicks={ampTicks}
-                    rightTicks={vextTicks}
-                    theme={theme}
-                />
-                <Typography variant='h6' align='center'>Error and Energy level</Typography>
-                <BiaxialStyledLineGraph
-                    X={iterationArray}
-                    xTicks={range(0, Math.max(...iterationArray), getStepSize(iterationArray))}
-                    Y0={errorRecord.map((n)=>{return round(n, 5)})}
-                    Y1={muRecord.map((n)=>{return round(n, 5)})}
-                    yAxisDirections={['left']}
-                    leftYAxisLabel='log10 Error'
-                    leftTicks={logTicks}
-                    rightYAxisLabel='Energy Level (hbar &omega;)'
-                    rightTicks={muTicks}
-                    XAxisLabel='Number of Iterations'
-                    theme={theme}
+        <Grid container height = {'100%'}>
+            <Grid container padding={2}>
+                <Button variant='contained'
+                    color='primary'
+                    fullWidth={true}
+                    onClick={performRun}
+                >{getButtonText()}
+                </Button>
+                <Slider
+                    defaultValue={0}
+                    orientation='horizontal'
+                    onChange={(event: Event, value: number | number[]) => {
+                        const flatValue: number = Array.isArray(value) ? value[0] : value;
+                        n.current = flatValue
+                    }}
+                    valueLabelDisplay="auto"
+                    step={1}
+                    marks
+                    min={0}
+                    max={10}
+                    size='medium'
                 />
             </Grid>
-            <Grid item xs={4} padding={2}>
-                <QHODescription />
-            </Grid>
+            <Typography variant='h6' align='center'>Wave function and Potential function</Typography>
+            <BiaxialStyledLineGraph
+                X={x}
+                xTicks={funcTicks}
+                Y0={u.map((n) => { return round(n, 5) })}
+                Y1={vext.map((n) => { return round(n, 2) })}
+                yAxisDirections={['left']}
+                leftYAxisLabel='Probability Amplitude'
+                rightYAxisLabel='Potential (units of energy)'
+                XAxisLabel='X (units of space)'
+                leftTicks={ampTicks}
+                rightTicks={vextTicks}
+                theme={theme}
+            />
+            <Typography variant='h6' align='center'>Error and Energy level</Typography>
+            <BiaxialStyledLineGraph
+                X={iterationArray}
+                xTicks={range(0, Math.max(...iterationArray), getStepSize(iterationArray))}
+                Y0={errorRecord.map((n) => { return round(n, 5) })}
+                Y1={muRecord.map((n) => { return round(n, 5) })}
+                yAxisDirections={['left']}
+                leftYAxisLabel='log10 Error'
+                leftTicks={logTicks}
+                rightYAxisLabel='Energy Level (hbar &omega;)'
+                rightTicks={muTicks}
+                XAxisLabel='Number of Iterations'
+                theme={theme}
+            />
         </Grid>
     )
     async function startRun() {
@@ -126,7 +118,7 @@ export function QHO(serverStatus:boolean, backendHostname:string) {
                 })
         }
     }
-    async function getNextRunData(runData:RunData) {
+    async function getNextRunData(runData: RunData) {
         const hostname = backendHostname + '/api/post_qho_run'
         const post = await axios.post(hostname,
             {
@@ -163,20 +155,20 @@ export function QHO(serverStatus:boolean, backendHostname:string) {
             setStartable(true);
         }
     }
-    function getButtonText(){
-        if (!serverStatus){
+    function getButtonText() {
+        if (!serverStatus) {
             return 'Starting Backend Server from cold state. This may take a minute'
         }
-        if (!startable){
+        if (!startable) {
             return 'Calculating'
         }
-        else{
+        else {
             return 'Start Iterations'
         }
     }
 }
 
-function range(start:number, end:number, step:number) {
+function range(start: number, end: number, step: number) {
     var output = [];
     // Validate input
     if (step > 0 && start < end) {
@@ -194,7 +186,7 @@ function range(start:number, end:number, step:number) {
     return output;
 
 }
-function getStepSize(itArray:number[]) {
+function getStepSize(itArray: number[]) {
     // Orders of magnitude below the max value
     var orderMagReduct = 1;
     // Number of base 10 units in each step i.e. a order magnitude of 3 should be 1000, but in this case we want multiples of 2000
@@ -211,6 +203,6 @@ function getStepSize(itArray:number[]) {
     }
 }
 
-function round(n:number, to:number){
+function round(n: number, to: number) {
     return Number(n.toFixed(to))
 }

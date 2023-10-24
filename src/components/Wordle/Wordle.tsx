@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Box, Grid, Typography, Button } from '@mui/material';
-import {useSpring, animated, } from '@react-spring/web'
+import { useSpring, animated, } from '@react-spring/web'
 import axios from "axios";
-import { WordleDescription } from './WordleDescription';
-import './Wordle.css';
 
 const wordleBackgrounds = {
     grey: '#666666',
@@ -30,41 +28,36 @@ export function Wordle(serverStatus: boolean, backendHostname: string) {
         document.addEventListener('keydown', handleKeyPress);
         // eslint-disable-next-line
     }, []);
-    const [springs, api] = useSpring(()=>({
-        from: { x:2},
+    const [springs, api] = useSpring(() => ({
+        from: { x: 2 },
     }))
     return (
-        <Grid container spacing={1} style={{ height: '100%' }} padding={2}>
-            <Grid item xs={8} >
-                <Button variant='contained'
-                    color='primary'
-                    fullWidth={true}
-                    onClick={resetGame}>
-                    {serverStatus ? 'Reset' : 'Starting Backend Server from cold state. This may take a minute'}
-                </Button>
-                <Grid container direction={'column'}>
-                    {
-                        guessState.map((guess, i) => (
-                            <Grid item key={i}>
-                                <animated.div style={i === guessNum.current ? {...springs}: {}}>
+        <Grid container padding={2}>
+            <Button variant='contained'
+                color='primary'
+                fullWidth={true}
+                onClick={resetGame}>
+                {serverStatus ? 'Reset' : 'Starting Backend Server from cold state. This may take a minute'}
+            </Button>
+            <Grid container direction={'column'}>
+                {
+                    guessState.map((guess, i) => (
+                        <Grid item key={i}>
+                            <animated.div style={i === guessNum.current ? { ...springs } : {}}>
                                 <WordleRow
                                     guess={guess}
                                     color={colors.current[i]}
                                     numWords={numWords.current[i]}
                                     rowNum={i}
                                     isCurrentGuess={i === guessNum.current}
-                                    />
-                                </animated.div>
-                            </Grid>
-                        ))
-                    }
-                </Grid>
-                {!playing &&
-                    <Typography variant='h6'>{numWords.current[numWords.current.length-1]===1 ? 'Correct, well done!' : 'Better luck next time, the word was "' + word.current + '"'}</Typography>
+                                />
+                            </animated.div>
+                        </Grid>
+                    ))
                 }
-            </Grid>
-            <Grid item xs={4} padding={2}>
-                <WordleDescription/>
+                {!playing &&
+                    <Typography variant='h6'>{numWords.current[numWords.current.length - 1] === 1 ? 'Correct, well done!' : 'Better luck next time, the word was "' + word.current + '"'}</Typography>
+                }
             </Grid>
         </Grid>
     )
@@ -107,7 +100,7 @@ export function Wordle(serverStatus: boolean, backendHostname: string) {
                 const results = response.data;
                 guesses.current = results.guesses
                 colors.current = results.letterColors
-                setPlaying(()=>true)
+                setPlaying(() => true)
                 numWords.current = []
                 setGuessState(guesses.current)
                 word.current = results.word;
@@ -140,14 +133,16 @@ export function Wordle(serverStatus: boolean, backendHostname: string) {
                     numWords.current.push(results.num_possibilities)
                     charNum.current = 0
                 }
-                else{
+                else {
                     api.start({
                         from: {
-                             x:
-                        3},
+                            x:
+                                3
+                        },
                         to: {
-                        x: 0
-                    }})
+                            x: 0
+                        }
+                    })
                 }
                 setGuessState(guesses.current)
                 setPlaying(() => results.playing)
