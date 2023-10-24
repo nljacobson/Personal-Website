@@ -22,7 +22,7 @@ export function Wordle(serverStatus: boolean, backendHostname: string) {
     var word = useRef('');
     var guessNum = useRef<number>(0);
     var charNum = useRef<number>(0);
-    const [playing, setPlaying] = useState<Boolean>(false);
+    const [playing, setPlaying] = useState<Boolean>(true);
     useEffect(() => {
         resetGame();
         document.addEventListener('keydown', handleKeyPress);
