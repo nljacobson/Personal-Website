@@ -26,7 +26,7 @@ export function Wordle(serverStatus: boolean, backendHostname: string) {
     useEffect(() => {
         resetGame();
         document.addEventListener('keydown', handleKeyPress);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line
     }, []);
     return (
         <Grid container spacing={1} style={{ height: '100%' }} padding={2}>

@@ -12,10 +12,10 @@ import { Grid } from '@mui/material';
 import axios from "axios";
 export default function App() {
   const [serverStatus, setServerStatus] = useState(false);
-  const backendHostname = 'https://noah-jacobson-backend.azurewebsites.net'
+  const backendHostname = 'http://localhost:5000'//'https://noah-jacobson-backend.azurewebsites.net'
   useEffect(() => {
     document.title = 'Noah Jacobson';
-    getTestPost();
+    getTestPost(backendHostname);
   }, []);
   return (
     <ThemeProvider theme={theme}>
@@ -44,9 +44,9 @@ export default function App() {
       </Grid>
     </ThemeProvider>
   );
-  async function getTestPost() {
+  async function getTestPost(backendHostname:string) {
     setServerStatus(false);
-    const hostname = 'https://noah-jacobson-backend.azurewebsites.net/api/testpost'
+    const hostname = backendHostname +'/api/testpost'
     await axios.post(hostname,
       {
         mode: 'no-cors',
