@@ -12,7 +12,7 @@ import { Grid } from '@mui/material';
 import axios from "axios";
 export default function App() {
   const [serverStatus, setServerStatus] = useState(false);
-  const backendHostname = 'http://localhost:5000' //'https://noah-jacobson-backend.azurewebsites.net'
+  const backendHostname = 'https://noah-jacobson-backend.azurewebsites.net'
   useEffect(() => {
     document.title = 'Noah Jacobson';
     getTestPost(backendHostname);
