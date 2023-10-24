@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Box, Grid, Typography, Button } from '@mui/material';
+import {useSpring, animated, } from '@react-spring/web'
 import axios from "axios";
-import { WordleDescription } from './WordleDescription'
+import { WordleDescription } from './WordleDescription';
+import './Wordle.css';
 
 const wordleBackgrounds = {
     grey: '#666666',
@@ -22,12 +24,15 @@ export function Wordle(serverStatus: boolean, backendHostname: string) {
     var word = useRef('');
     var guessNum = useRef<number>(0);
     var charNum = useRef<number>(0);
-    const [playing, setPlaying] = useState<Boolean>(true);
+    const [playing, setPlaying] = useState<boolean>(true);
     useEffect(() => {
         resetGame();
         document.addEventListener('keydown', handleKeyPress);
         // eslint-disable-next-line
     }, []);
+    const [springs, api] = useSpring(()=>({
+        from: { x:2},
+    }))
     return (
         <Grid container spacing={1} style={{ height: '100%' }} padding={2}>
             <Grid item xs={8} >
@@ -41,12 +46,15 @@ export function Wordle(serverStatus: boolean, backendHostname: string) {
                     {
                         guessState.map((guess, i) => (
                             <Grid item key={i}>
+                                <animated.div style={i === guessNum.current ? {...springs}: {}}>
                                 <WordleRow
                                     guess={guess}
                                     color={colors.current[i]}
                                     numWords={numWords.current[i]}
                                     rowNum={i}
-                                    isCurrentGuess={i === guessNum.current} />
+                                    isCurrentGuess={i === guessNum.current}
+                                    />
+                                </animated.div>
                             </Grid>
                         ))
                     }
@@ -131,6 +139,15 @@ export function Wordle(serverStatus: boolean, backendHostname: string) {
                     guessNum.current = guessNum.current + 1
                     numWords.current.push(results.num_possibilities)
                     charNum.current = 0
+                }
+                else{
+                    api.start({
+                        from: {
+                             x:
+                        3},
+                        to: {
+                        x: 0
+                    }})
                 }
                 setGuessState(guesses.current)
                 setPlaying(() => results.playing)
