@@ -48,7 +48,7 @@ export default function App() {
     setServerStatus(false);
     const hostname = backendHostname +'/api/testpost'
     console.log(hostname)
-    await axios.post(hostname,
+    const post = await axios.post(hostname,
       {
         mode: 'no-cors',
         headers: {
